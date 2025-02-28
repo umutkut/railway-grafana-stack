@@ -1,0 +1,6 @@
+ARG VERSION=latest
+
+FROM grafana/grafana-oss:${VERSION}
+
+# add custom config and plugins 
+ENV GF_INSTALL_PLUGINS=grafana-simple-json-datasource,grafana-piechart-panel,grafana-worldmap-panel,grafana-clock-panel
