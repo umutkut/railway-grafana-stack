@@ -1,0 +1,9 @@
+ARG VERSION=latest
+
+FROM grafana/tempo:${VERSION}
+
+# Copy the tempo.yml configuration file to the container with the expected filename
+COPY tempo.yml /etc/tempo/tempo-local.yaml
+
+# Update command to use the correct config file path
+CMD ["-config.file=/etc/tempo/tempo-local.yaml"]
