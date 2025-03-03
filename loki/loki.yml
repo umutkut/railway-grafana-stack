@@ -3,13 +3,14 @@ auth_enabled: false
 server:
   http_listen_port: 3100
 
+# TODO: move to consul / etcd keystores
 common:
   ring:
     instance_addr: 127.0.0.1
     kvstore:
       store: inmemory
   replication_factor: 1
-  path_prefix: /etc/loki
+  path_prefix: /tmp/loki
 
 schema_config:
   configs:
@@ -23,11 +24,11 @@ schema_config:
 
 storage_config:
   tsdb_shipper:
-    active_index_directory: /etc/loki/chunks
-    cache_location: /etc/loki/cache
+    active_index_directory: /loki/tsdb-index
+    cache_location: /loki/tsdb-cache
 
 compactor:
-  working_directory: /etc/loki/compactor
+  working_directory: /loki/retention
   compaction_interval: 10m
   retention_enabled: true
   retention_delete_delay: 2h
