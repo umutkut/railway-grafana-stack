@@ -12,8 +12,8 @@ datasources:
     type: loki
     access: direct
     orgId: 1
-    uid: grafana_loki
-    url: http://$LOKI_INTERNAL_URL:3100
+    uid: grafana_lokiq
+    url: $LOKI_INTERNAL_URL
     user:
     database:
     basicAuth:
@@ -25,7 +25,7 @@ datasources:
     access: direct
     orgId: 1
     uid: grafana_prometheus
-    url: http://$PROMETHEUS_INTERNAL_URL:9090
+    url: $PROMETHEUS_INTERNAL_URL
     user:
     database:
     basicAuth:
