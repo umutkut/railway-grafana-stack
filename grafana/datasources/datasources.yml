@@ -1,0 +1,76 @@
+# Configuration file version
+apiVersion: 1
+
+# Mark provisioned data sources for deletion if they are no longer in a provisioning file.
+# It takes no effect if data sources are already listed in the deleteDatasources section.
+prune: false
+
+# List of data sources to insert/update depending on what's
+# available in the database.
+datasources:
+  # <string, required> Sets the name you use to refer to
+  # the data source in panels and queries.
+  - name: Loki
+    # <string, required> Sets the data source type.
+    type: loki
+    # <string, required> Sets the access mode, either
+    # proxy or direct (Server or Browser in the UI).
+    # Some data sources are incompatible with any setting
+    # but proxy (Server).
+    access: direct
+    # <int> Sets the organization id. Defaults to orgId 1.
+    orgId: 1
+    # <string> Sets a custom UID to reference this
+    # data source in other parts of the configuration.
+    # If not specified, Grafana generates one.
+    uid: grafana_loki
+    # <string> Sets the data source's URL, including the
+    # port.
+    url: http://loki:3100
+    # <string> Sets the database user, if necessary.
+    user:
+    # <string> Sets the database name, if necessary.
+    database:
+    # <bool> Enables basic authorization.
+    basicAuth:
+    # <string> Sets the basic authorization username.
+    basicAuthUser:
+    # <bool> Enables credential headers.
+    withCredentials:
+    # <bool> Toggles whether the data source is pre-selected
+    # for new panels. You can set only one default
+    # data source per organization.
+    isDefault: true
+    # <map> Fields to convert
+  - name: Prometheus
+    # <string, required> Sets the data source type.
+    type: prometheus
+    # <string, required> Sets the access mode, either
+    # proxy or direct (Server or Browser in the UI).
+    # Some data sources are incompatible with any setting
+    # but proxy (Server).
+    access: direct
+    # <int> Sets the organization id. Defaults to orgId 1.
+    orgId: 1
+    # <string> Sets a custom UID to reference this
+    # data source in other parts of the configuration.
+    # If not specified, Grafana generates one.
+    uid: grafana_prometheus
+    # <string> Sets the data source's URL, including the
+    # port.
+    url: http://prometheus:9090
+    # <string> Sets the database user, if necessary.
+    user:
+    # <string> Sets the database name, if necessary.
+    database:
+    # <bool> Enables basic authorization.
+    basicAuth:
+    # <string> Sets the basic authorization username.
+    basicAuthUser:
+    # <bool> Enables credential headers.
+    withCredentials:
+    # <bool> Toggles whether the data source is pre-selected
+    # for new panels. You can set only one default
+    # data source per organization.
+    isDefault: false
+    # <map> Fields to convert to

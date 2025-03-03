@@ -26,5 +26,4 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./grafana/prom-datasource.yml:/etc/grafana/provisioning/datasources/prom-datasource.yml
-      - ./grafana/loki-datasource.yml:/etc/grafana/provisioning/datasources/loki-datasource.yml
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources/
