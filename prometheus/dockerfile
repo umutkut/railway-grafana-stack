@@ -1,4 +1,4 @@
-ARG VERSION=latest
+ARG VERSION=v3.2.1
 
 FROM prom/prometheus:${VERSION}
 
