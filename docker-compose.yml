@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+    
+  prometheus:
+    build:
+      context: ./prometheus
+      dockerfile: dockerfile
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus_data:/prometheus
+
+  loki:
+    build:
+      context: ./loki
+      dockerfile: dockerfile
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki_data:/loki
+
+  grafana:
+    build:
+      context: ./grafana
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=yourpassword123
+      - GF_DEFAULT_INSTANCE_NAME=Grafana
+      - GF_INSTALL_PLUGINS=grafana-simple-json-datasource,grafana-piechart-panel,grafana-worldmap-panel,grafana-clock-panel
+
+volumes: 
+  prometheus_data:
+  loki_data:
+  grafana_data:
