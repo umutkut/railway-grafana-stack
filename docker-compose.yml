@@ -3,38 +3,28 @@ version: '3.8'
 services:
   prometheus:
     build:
-      context: ./prometheus-railway
+      context: ./prometheus
       dockerfile: dockerfile
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus-railway/prom.yml:/etc/prometheus/prom.yml
+      - ./prometheus/prom.yml:/etc/prometheus/prom.yml
 
   loki:
     build:
-      context: ./loki-railway
+      context: ./loki
       dockerfile: dockerfile
     ports:
       - "3100:3100"
     volumes:
-      - ./loki-railway/loki.yml:/etc/loki/loki.yml
+      - ./loki/loki.yml:/etc/loki/loki.yml
 
   grafana:
     build:
-      context: ./grafana-railway
+      context: ./grafana
       dockerfile: dockerfile
     ports:
       - "3000:3000"
     volumes:
-      - ./grafana-railway/prom-datasource.yml:/etc/grafana/provisioning/datasources/prom-datasource.yml
-      - ./grafana-railway/loki-datasource.yml:/etc/grafana/provisioning/datasources/loki-datasource.yml
-      - ./grafana-railway/tempo-datasource.yml:/etc/grafana/provisioning/datasources/tempo-datasource.yml
-
-  tempo:
-    build:
-      context: ./tempo-railway
-      dockerfile: dockerfile
-    ports:
-      - "3200:3200"
-    volumes:
-      - ./tempo-railway/tempo.yml:/etc/tempo/tempo-local.yaml
+      - ./grafana/prom-datasource.yml:/etc/grafana/provisioning/datasources/prom-datasource.yml
+      - ./grafana/loki-datasource.yml:/etc/grafana/provisioning/datasources/loki-datasource.yml
