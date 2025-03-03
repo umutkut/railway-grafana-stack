@@ -1,6 +1,6 @@
-ARG VERSION=latest
+ARG VERSION=11.5.2
 
 FROM grafana/grafana-oss:${VERSION}
 
-# add custom config and plugins 
-ENV GF_INSTALL_PLUGINS=grafana-simple-json-datasource,grafana-piechart-panel,grafana-worldmap-panel,grafana-clock-panel
+# copy the datasources and dashboards
+COPY datasources /etc/grafana/provisioning/datasources
