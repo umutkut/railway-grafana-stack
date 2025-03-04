@@ -22,7 +22,7 @@ datasources:
     isDefault: true
   - name: Prometheus
     type: prometheus
-    access: direct
+    access: proxy
     orgId: 1
     uid: grafana_prometheus
     url: $PROMETHEUS_INTERNAL_URL
