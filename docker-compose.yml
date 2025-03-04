@@ -6,6 +6,7 @@ services:
     build:
       context: ./prometheus
       dockerfile: dockerfile
+    user: root # required for data persistence
     ports:
       - "9090:9090"
     volumes:
@@ -15,6 +16,7 @@ services:
     build:
       context: ./loki
       dockerfile: dockerfile
+    user: root # required for data persistence
     ports:
       - "3100:3100"
     volumes:
@@ -24,6 +26,7 @@ services:
     build:
       context: ./tempo
       dockerfile: dockerfile
+    user: root # required for data persistence
     ports:
       - "3200:3200"
     volumes:
@@ -35,8 +38,8 @@ services:
       dockerfile: dockerfile
     ports:
       - "3000:3000"
-    # volumes:
-    #   - grafana_data:/var/lib/grafana
+    volumes:
+      - grafana_data:/var/lib/grafana
     environment:
       - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=yourpassword123
@@ -45,9 +48,16 @@ services:
       - LOKI_INTERNAL_URL=http://loki:3100
       - PROMETHEUS_INTERNAL_URL=http://prometheus:9090
       - TEMPO_INTERNAL_URL=http://tempo:3200
+  
+  example_api: 
+    build:
+      context: ./examples/api
+      dockerfile: dockerfile
+    ports:
+      - "9091:9091"
 
 volumes: 
   prometheus_data:
   loki_data:
-  # grafana_data:
+  grafana_data:
   tempo_data:
