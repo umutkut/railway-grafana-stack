@@ -1,1 +1,2 @@
-grafana/data
+# example deps
+node_modules/
