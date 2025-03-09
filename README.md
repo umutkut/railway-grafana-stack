@@ -1,5 +1,7 @@
 # Grafana Stack on Railway
 
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/template/8TLSQD?referralCode=IFlm92)
+
 ## What is this template
 
 This template deploys a complete Grafana observability stack on Railway with just one click! The stack includes four integrated services:
@@ -100,6 +102,12 @@ All services are deployed using official Docker images and configured to work to
 
 ## Connecting Your Applications
 
+### Using locomotive for Loki
+
+You can easily ingest *all* of your railway logs into Loki from *any* service using [Locomotive](https://railway.com/template/jP9r-f). Just spin up their template, drop in your Railway API key, the ID of the services you want to monitor, and a link to your new Loki instance and logs will start flowing! no code changes needed anywhere!
+
+### Using standard observability tooling
+
 To send data from your other Railway applications to this observability stack:
 
 1. In your application's Railway service, add environment variables that reference the internal URLs:
@@ -108,9 +116,7 @@ To send data from your other Railway applications to this observability stack:
    PROMETHEUS_URL=${{Grafana.PROMETHEUS_INTERNAL_URL}}
    TEMPO_URL=${{Grafana.TEMPO_INTERNAL_URL}}
    ```
-
 2. Configure your application's logging, metrics, or tracing libraries to use these URLs
-
 3. Your application data will automatically appear in your Grafana dashboards
 
 ## Customizing Your Stack
@@ -127,6 +133,7 @@ The pre-configured Grafana connections will continue to work with your customize
 
 ## Additional Resources
 
+- [Locomotive: a loki transport for railway services](https://railway.com/template/jP9r-f)
 - [Grafana Documentation](https://grafana.com/docs/grafana/latest/)
 - [Loki Documentation](https://grafana.com/docs/loki/latest/)
 - [Prometheus Documentation](https://prometheus.io/docs/introduction/overview/)
