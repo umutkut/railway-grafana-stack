@@ -102,7 +102,7 @@ All services are deployed using official Docker images and configured to work to
 
 ## Connecting Your Applications
 
-### Using locomotive for Loki
+### Using [Locomotive](https://railway.com/template/jP9r-f) for Loki
 
 You can easily ingest *all* of your railway logs into Loki from *any* service using [Locomotive](https://railway.com/template/jP9r-f). Just spin up their template, drop in your Railway API key, the ID of the services you want to monitor, and a link to your new Loki instance and logs will start flowing! no code changes needed anywhere!
 
