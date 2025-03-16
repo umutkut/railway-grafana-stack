@@ -18,8 +18,6 @@ distributor:
     otlp:
       protocols:
         grpc:
-          # this endpoint can be used for sending traces/spans via GRPC
           endpoint: "0.0.0.0:4317"
         http:
-          # this endpoint can be used for sending traces/spans via HTTP
           endpoint: "0.0.0.0:4318"
