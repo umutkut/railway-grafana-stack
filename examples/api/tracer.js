@@ -3,7 +3,7 @@ import { getNodeAutoInstrumentations } from "@opentelemetry/auto-instrumentation
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { Resource } from "@opentelemetry/resources";
 
-const tempoUrl = process.env.TEMPO_URL || "http://localhost:4318";
+const tempoUrl = process.env.TEMPO_URL || "http://tempo:4318";
 const tempoIngestAPIUrl = `${tempoUrl}/v1/traces`;
 
 // Configure the trace exporter
