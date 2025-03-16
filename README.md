@@ -47,11 +47,18 @@ The Grafana service exposes these environment variables that you can reference i
 
 | Variable | Description | Usage |
 |----------|-------------|-------|
-| `LOKI_INTERNAL_URL` | Internal URL for the Loki service | Use in your applications to send logs to Loki |
-| `PROMETHEUS_INTERNAL_URL` | Internal URL for the Prometheus service | Use in your applications to send metrics to Prometheus |
-| `TEMPO_INTERNAL_URL` | Internal URL for the Tempo service | Use in your applications to send traces to Tempo |
+| `LOKI_INTERNAL_URL` | Internal URL for the Loki service | Use in your applications to send logs to and query Loki |
+| `PROMETHEUS_INTERNAL_URL` | Internal URL for the Prometheus service | Use in your applications to send metrics to and query Prometheus |
+| `TEMPO_INTERNAL_URL` | Internal URL for the Tempo service | Use in your applications to query Tempo |
 
 These variables make it easy to configure your other Railway services to send telemetry data to your observability stack.
+
+Tempo also exposes a few variables to make it easier to push tracing information to the service using either HTTP or GRPC
+
+| Variable | Description | Usage |
+|----------|-------------|-------|
+| `INTERNAL_HTTP_INGEST` | Internal HTTP ingest server URL for Tempo | Use in your applications to send traces to tempo via HTTP |
+| `INTERNAL_GRPC_INGEST` | Internal GRPC ingest server URL for Tempo | Use in your applications to send traces to tempo via GRPC |
 
 ### Version Control
 
@@ -106,7 +113,15 @@ All services are deployed using official Docker images and configured to work to
 
 You can easily ingest *all* of your railway logs into Loki from *any* service using [Locomotive](https://railway.com/template/jP9r-f). Just spin up their template, drop in your Railway API key, the ID of the services you want to monitor, and a link to your new Loki instance and logs will start flowing! no code changes needed anywhere!
 
-### Using standard observability tooling
+### Using OpenTelemetry libraries for Tempo 
+
+Tempo is a bit different than both Prometheus and Loki in that exposes separate GRPC and HTTP servers on ports `:4317` and `:4318` respectively specifically for ingesting your tracing data or "spans".
+
+When configuring your application to send traces to Tempo, please use one of the preconfigured variables in the Tempo service: `INTERNAL_HTTP_INGEST` or `INTERNAL_GRPC_INGEST`.
+
+Another thing to note is that the ingest API endpoint for the HTTP server is `/v1/traces`. For a working example of this in a node.js express API, see `/examples/api/tracer.js` in our GitHub repository.
+
+### Using otherwise standard observability tooling
 
 To send data from your other Railway applications to this observability stack:
 
