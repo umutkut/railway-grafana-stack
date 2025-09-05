@@ -1,5 +1,6 @@
 ARG VERSION=v3.2.1
 ARG TARGET
+ECHO TARGET
 FROM prom/prometheus:${VERSION}
 
 # Copy the prom.yml configuration file to the container
