@@ -2,10 +2,12 @@ global:
   scrape_interval: 15s # Default scrape interval
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: 'paytalya-pos'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 10s
     static_configs:
-      - targets: ['localhost:9090']
-
+      - targets: [ '${PAYTALYA_POS_SERVICE_URL}' ]
+    scrape_timeout: 5s
   # - job_name: 'example_api'
   #   scheme: http
   #   static_configs:
