@@ -1,7 +1,8 @@
 ARG VERSION=v3.2.1
-ARG TARGET
-ECHO TARGET
 FROM prom/prometheus:${VERSION}
+
+ARG TARGET
+RUN echo $TARGET
 
 # Copy the prom.yml configuration file to the container
 COPY prom.yml /etc/prometheus/prom.yml
